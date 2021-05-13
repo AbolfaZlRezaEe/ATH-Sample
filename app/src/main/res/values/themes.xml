@@ -1,0 +1,26 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.ATHSample" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/darkBlack</item>
+        <item name="colorPrimaryVariant">@color/darkBlack</item>
+        <item name="colorOnPrimary">@color/lightWhite</item>
+        <!-- background brand color-->
+        <item name="background">@color/darkGreen</item>
+        <item name="colorOnBackground">@color/lightWhite</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/lightGreen</item>
+        <item name="colorOnSecondary">@color/darkGreen</item>
+        <!-- Surface brand color. -->
+        <item name="colorSurface">@color/lightGreen</item>
+        <item name="colorOnSurface">@color/darkGreen</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="appBarLayoutStyle">
+            @style/Widget.MaterialComponent.AppBarLayout.NotiesAppBarLayout
+        </item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+
+    </style>
+</resources>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- style for toggle buttons -->
+    <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:minWidth">32dp</item>
+        <item name="strokeColor">@color/transparent</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+    <!-- Appbar Style-->
+    <style name="Widget.MaterialComponent.AppBarLayout.NotiesAppBarLayout" parent="Widget.Design.AppBarLayout">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <!-- Buttons Style -->
+    <style name="Widget.MaterialComponent.Button.Noties" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">?colorSecondary</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textColor">@color/normalGreen</item>
+        <item name="android:textSize">15sp</item>
+        <item name="cornerRadius">9dp</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="fontFamily">@font/gilroy_semibold</item>
+        <item name="android:fontFamily">@font/gilroy_semibold</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="Widget.MaterialComponent.OutlinedButton.Noties" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="backgroundTint">@color/transparent</item>
+        <item name="strokeColor">?colorSecondary</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textColor">@color/lightWhite</item>
+        <item name="android:textSize">15sp</item>
+        <item name="cornerRadius">9dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="textAllCaps">false</item>
+        <item name="fontFamily">@font/gilroy_semibold</item>
+        <item name="android:fontFamily">@font/gilroy_semibold</item>
+    </style>
+
+    <style name="Widget.AppCompat.EditText.Noties" parent="android:Widget.EditText">
+        <item name="fontFamily">@font/gilroy_medium</item>
+        <item name="android:fontFamily">@font/gilroy_medium</item>
+        <item name="android:textColor">@color/lightWhite</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColorHint">@color/lightWhite60Opacity</item>
+        <item name="android:background">@drawable/background_noties_edit_text</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+    </style>
+
+</resources>

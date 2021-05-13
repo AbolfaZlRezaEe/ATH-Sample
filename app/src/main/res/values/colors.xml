@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme Color -->
+    <color name="darkBlack">#061B23</color>
+    <color name="lightGreen">#A8D1B4</color>
+    <color name="darkGreen">#05373A</color>
+    <color name="lightWhite">#F8F8F8</color>
+    <color name="normalGreen">#1F5F5B</color>
+
+    <!-- custom Color -->
+    <color name="lightWhite20Opacity">#33F8F8F8</color>
+    <color name="lightWhite60Opacity">#99F8F8F8</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

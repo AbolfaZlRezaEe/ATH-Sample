@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkBlack">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/background_sign_in_page" />
+
+    <ImageView
+        android:id="@+id/backButtonSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|top"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="40dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        app:srcCompat="@drawable/ic_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/signIn"
+            android:textAppearance="@style/TextAppearance.MyTheme.Headline6" />
+
+        <EditText
+            android:id="@+id/usernameSignInEditText"
+            style="@style/Widget.AppCompat.EditText.Noties"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginStart="66dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="66dp"
+            android:hint="@string/username" />
+
+        <EditText
+            android:id="@+id/passwordSignInEditText"
+            style="@style/Widget.AppCompat.EditText.Noties"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginStart="66dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="66dp"
+            android:background="@drawable/background_noties_edit_text"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/loginButton"
+            style="@style/Widget.MaterialComponent.Button.Noties"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginStart="66dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="66dp"
+            android:text="@string/login" />
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
