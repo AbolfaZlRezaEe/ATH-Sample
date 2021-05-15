@@ -37,14 +37,14 @@
     <style name="TextAppearance.MyTheme.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="fontFamily">@font/roboto_medium</item>
         <item name="android:fontFamily">@font/roboto_medium</item>
-        <item name="android:textColor">@color/darkGray</item>
+        <item name="android:textColor">@color/lightWhite</item>
         <item name="android:textSize">18sp</item>
     </style>
 
     <style name="TextAppearance.MyTheme.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="fontFamily">@font/roboto_regular</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:textColor">@color/gray200</item>
+        <item name="android:textColor">@color/lightWhite</item>
         <item name="android:textSize">15sp</item>
     </style>
 
@@ -52,7 +52,7 @@
         <item name="fontFamily">@font/gilroy_medium</item>
         <item name="android:fontFamily">@font/gilroy_medium</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/gray500</item>
+        <item name="android:textColor">@color/lightWhite</item>
     </style>
 
     <style name="TextAppearance.MyTheme.Body2" parent="TextAppearance.MaterialComponents.Body2">

@@ -7,9 +7,10 @@ import com.abproject.athsample.data.database.UserDao
 import com.abproject.athsample.data.database.UserDataBase
 import com.abproject.athsample.data.repository.MainRepository
 import com.abproject.athsample.data.repository.MainRepositoryImpl
-import com.abproject.athsample.view.auth.fragment.AuthViewModel
+import com.abproject.athsample.view.auth.AuthViewModel
 import com.abproject.athsample.view.main.MainViewModel
 import com.abproject.athsample.view.splash.SplashViewModel
+import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
@@ -26,6 +27,7 @@ class ATHGlobal : Application() {
             androidContext(this@ATHGlobal)
             modules(baseImpl, databaseModule, repositoriesModule, viewModelModule)
         }
+        loadUserInformation()
     }
 
     val baseImpl = module {
@@ -53,8 +55,14 @@ class ATHGlobal : Application() {
     }
 
     val viewModelModule = module {
-        viewModel { MainViewModel(get()) }
-        viewModel { AuthViewModel(get()) }
+        viewModel { MainViewModel() }
+        viewModel { AuthViewModel(get(),get()) }
         viewModel { SplashViewModel(get()) }
+    }
+
+    fun loadUserInformation() {
+        val authViewModel: AuthViewModel = get()
+        authViewModel.checkUsers()
+        authViewModel.loadUserExisting()
     }
 }

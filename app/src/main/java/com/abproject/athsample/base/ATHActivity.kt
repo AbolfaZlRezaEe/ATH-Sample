@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.forEach
+import com.abproject.athsample.base.ATHInterface
 import java.lang.IllegalStateException
 
 abstract class ATHActivity : AppCompatActivity(), ATHInterface {

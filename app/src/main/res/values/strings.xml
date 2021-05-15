@@ -1,28 +1,23 @@
 <resources>
-    <string name="app_name">Noties</string>
+    <string name="app_name">ATH Sample</string>
     <string name="searchHint">Search...</string>
-    <string name="notes">Notes</string>
-    <string name="homeEmptyStateMessage">Do not add your first note?</string>
-    <string name="noteTitle">Note Title</string>
-    <string name="noteDescription">Note Description</string>
-    <string name="createNote">create note</string>
-    <string name="done">done</string>
-    <string name="saveChanges">save Changes</string>
     <string name="loading">Loading</string>
-    <string name="welcomeDescription">Welcome to the Noties <br></br> Lets Start</string>
-    <string name="signUpDes">Please SignUp Before Using Noties</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="fullName">fullName</string>
     <string name="signUp">Sign Up</string>
     <string name="signIn">Sign In</string>
     <string name="singUpWelcome">Sign up</string>
     <string name="singInWelcome">Sign in</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
+    <string name="phoneNumber">Phone Number</string>
     <string name="newNote">New Note</string>
-    <string name="succeedAuth">Welcome to the Noties</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="firstNameError">Please Enter Your FirstName!</string>
+    <string name="lastNameError">Please Enter Your LastName!</string>
     <string name="usernameError">Please Enter Username!</string>
     <string name="passwordError">Please Enter Password</string>
+    <string name="phoneNumberError">Please Enter Your PhoneNumber!</string>
     <string name="emailError">Please Enter Email!</string>
 </resources>

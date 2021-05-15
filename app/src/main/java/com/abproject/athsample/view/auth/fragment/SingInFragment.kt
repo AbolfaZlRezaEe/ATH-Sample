@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.abp.noties.base.ATHFragment
 import com.abproject.athsample.R
 import com.abproject.athsample.databinding.FragmentSignInBinding
+import com.abproject.athsample.view.auth.AuthViewModel
 import com.abproject.athsample.view.splash.SplashActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -45,9 +46,8 @@ class SingInFragment : ATHFragment() {
     private fun setupSignIn() {
         binding.loginButton.setOnClickListener {
             if (validationEditTexts()) {
-                if (authViewModel.validateUserData(
-                        binding.usernameSignInEditText.text.toString(),
-                        binding.passwordSignInEditText.text.toString()
+                if (authViewModel.userIsExisting(
+                        binding.usernameSignInEditText.text.toString()
                     )
                 ) {
                     startActivity(Intent(requireActivity(), SplashActivity::class.java))
@@ -56,9 +56,8 @@ class SingInFragment : ATHFragment() {
                 }
             } else
                 showErrorInAuthEditTexts(
-                    null,
-                    binding.usernameSignInEditText,
-                    binding.passwordSignInEditText
+                    username = binding.usernameSignInEditText,
+                    password = binding.passwordSignInEditText
                 )
         }
     }

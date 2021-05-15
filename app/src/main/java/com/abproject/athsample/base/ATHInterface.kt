@@ -1,11 +1,11 @@
-package com.abp.noties.base
+package com.abproject.athsample.base
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import com.abp.noties.R
+import com.abproject.athsample.R
 import com.google.android.material.snackbar.Snackbar
 
 interface ATHInterface {
@@ -31,36 +31,26 @@ interface ATHInterface {
         }
     }
 
-    fun showEmptyState(layoutResId: Int = R.layout.empty_state, show: Boolean = false): View? {
-        rootView?.let { coordinatorLayout ->
-            viewContext?.let { context ->
-                var emptyState =
-                    coordinatorLayout.findViewById<View>(R.id.homeEmptyStateRootView)
-                if (emptyState == null) {
-                    emptyState =
-                        LayoutInflater.from(context)
-                            .inflate(layoutResId, coordinatorLayout, false)
-                    coordinatorLayout.addView(emptyState)
-                }
-                if (show)
-                    emptyState.visibility = View.VISIBLE
-                else
-                    emptyState.visibility = View.GONE
-                return emptyState
-            }
-        }
-        return null
-    }
 
     fun showErrorInAuthEditTexts(
+        firstName: EditText? = null,
+        lastName: EditText? = null,
         email: EditText? = null,
+        phoneNumber: EditText? = null,
         username: EditText,
         password: EditText
     ) {
-        if (email != null) {
+        if (email != null
+            && firstName != null
+            && lastName != null
+            && phoneNumber != null
+        ) {
+            firstName.error = viewContext?.getString(R.string.firstNameError)
+            lastName.error = viewContext?.getString(R.string.lastNameError)
             email.error = viewContext?.getString(R.string.emailError)
             username.error = viewContext?.getString(R.string.usernameError)
             password.error = viewContext?.getString(R.string.passwordError)
+            phoneNumber.error = viewContext?.getString(R.string.phoneNumberError)
         } else {
             username.error = viewContext?.getString(R.string.usernameError)
             password.error = viewContext?.getString(R.string.passwordError)

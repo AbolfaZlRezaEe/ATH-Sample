@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.abp.noties.base.ATHFragment
 import com.abproject.athsample.R
 import com.abproject.athsample.databinding.FragmentSignUpBinding
+import com.abproject.athsample.view.auth.AuthViewModel
 import com.abproject.athsample.view.splash.SplashActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -41,20 +42,32 @@ class SingUpFragment : ATHFragment() {
         return binding.emailSignUpEditText.text.isNotEmpty()
                 && binding.usernameSignUpEditText.text.isNotEmpty()
                 && binding.passwordSignUpEditText.text.isNotEmpty()
+                && binding.firstNameSignUpEditText.text.isNotEmpty()
+                && binding.lastNameSignUpEditText.text.isNotEmpty()
     }
 
     private fun setupSignUp() {
         binding.signUpButton.setOnClickListener {
             if (validationEditText()) {
-                authViewModel.saveUserInformation(
-                    binding.emailSignUpEditText.text.toString(),
-                    binding.usernameSignUpEditText.text.toString(),
-                    binding.passwordSignUpEditText.text.toString()
-                )
-                startActivity(Intent(requireActivity(), SplashActivity::class.java))
+                if (authViewModel.saveUserInformation(
+                        binding.firstNameSignUpEditText.text.toString(),
+                        binding.lastNameSignUpEditText.text.toString(),
+                        binding.emailSignUpEditText.text.toString(),
+                        binding.usernameSignUpEditText.text.toString(),
+                        binding.phoneNumberSignUpEditText.text.toString(),
+                        binding.passwordSignUpEditText.text.toString()
+                    )
+                ) {
+                    startActivity(Intent(requireActivity(), SplashActivity::class.java))
+                } else {
+                    showSnackBar("This Username hsa already been created!")
+                }
             } else
                 showErrorInAuthEditTexts(
+                    binding.firstNameSignUpEditText,
+                    binding.lastNameSignUpEditText,
                     binding.emailSignUpEditText,
+                    binding.phoneNumberSignUpEditText,
                     binding.usernameSignUpEditText,
                     binding.passwordSignUpEditText
                 )
@@ -66,6 +79,7 @@ class SingUpFragment : ATHFragment() {
             findNavController().popBackStack()
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
