@@ -30,7 +30,7 @@ class ATHGlobal : Application() {
         loadUserInformation()
     }
 
-    val baseImpl = module {
+    private val baseImpl = module {
         single<SharedPreferences> {
             this@ATHGlobal.getSharedPreferences(
                 "ath_file",
@@ -39,7 +39,7 @@ class ATHGlobal : Application() {
         }
     }
 
-    val databaseModule = module {
+    private val databaseModule = module {
         fun provideDataBase(application: Application): UserDataBase =
             Room.databaseBuilder(application, UserDataBase::class.java, "note_db")
                 .allowMainThreadQueries()
@@ -50,19 +50,19 @@ class ATHGlobal : Application() {
         single { provideNoteDao(get()) }
     }
 
-    val repositoriesModule = module {
+    private val repositoriesModule = module {
         factory<MainRepository> { MainRepositoryImpl(get()) }
     }
 
-    val viewModelModule = module {
-        viewModel { MainViewModel() }
-        viewModel { AuthViewModel(get(),get()) }
+    private val viewModelModule = module {
+        viewModel { MainViewModel(get(),get()) }
+        viewModel { AuthViewModel(get(), get()) }
         viewModel { SplashViewModel(get()) }
     }
 
-    fun loadUserInformation() {
+    private fun loadUserInformation() {
         val authViewModel: AuthViewModel = get()
-        authViewModel.checkUsers()
         authViewModel.loadUserExisting()
+        authViewModel.loadUserInformation()
     }
 }

@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.abp.noties.base.ATHFragment
 import com.abproject.athsample.R
 import com.abproject.athsample.databinding.FragmentSignUpBinding
+import com.abproject.athsample.util.DateConverter
 import com.abproject.athsample.view.auth.AuthViewModel
 import com.abproject.athsample.view.splash.SplashActivity
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -55,10 +56,12 @@ class SingUpFragment : ATHFragment() {
                         binding.emailSignUpEditText.text.toString(),
                         binding.usernameSignUpEditText.text.toString(),
                         binding.phoneNumberSignUpEditText.text.toString(),
-                        binding.passwordSignUpEditText.text.toString()
+                        binding.passwordSignUpEditText.text.toString(),
+                        DateConverter.convertDateToString(DateConverter.provideDate())
                     )
                 ) {
                     startActivity(Intent(requireActivity(), SplashActivity::class.java))
+                    requireActivity().finish()
                 } else {
                     showSnackBar("This Username hsa already been created!")
                 }
@@ -74,7 +77,7 @@ class SingUpFragment : ATHFragment() {
         }
     }
 
-    val onBackPressCallBack = object : OnBackPressedCallback(true) {
+    private val onBackPressCallBack = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             findNavController().popBackStack()
         }

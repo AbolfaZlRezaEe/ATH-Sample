@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">ATH Sample</string>
     <string name="searchHint">Search...</string>
+    <string name="users">Users</string>
+    <string name="hello">Hello</string>
+    <string name="yes">Yse</string>
+    <string name="no">No</string>
     <string name="loading">Loading</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
@@ -20,4 +24,6 @@
     <string name="passwordError">Please Enter Password</string>
     <string name="phoneNumberError">Please Enter Your PhoneNumber!</string>
     <string name="emailError">Please Enter Email!</string>
+    <string name="logoutDialogTitle">Logout!</string>
+    <string name="logoutDialogMessage">Are you sure you want to logout?</string>
 </resources>

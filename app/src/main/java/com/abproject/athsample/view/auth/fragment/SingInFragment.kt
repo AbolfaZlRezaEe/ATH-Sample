@@ -51,6 +51,7 @@ class SingInFragment : ATHFragment() {
                     )
                 ) {
                     startActivity(Intent(requireActivity(), SplashActivity::class.java))
+                    requireActivity().finish()
                 } else {
                     showSnackBar("Please Enter Validate Username or Password or SignUp!")
                 }
