@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.EditText
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.abproject.athsample.R
+import com.abproject.athsample.util.checkEmailIsValid
+import com.abproject.athsample.util.phoneNumberIsValid
 import com.google.android.material.snackbar.Snackbar
 
 interface ATHInterface {
@@ -46,15 +48,23 @@ interface ATHInterface {
             && lastName != null
             && phoneNumber != null
         ) {
-            firstName.error = viewContext?.getString(R.string.firstNameError)
-            lastName.error = viewContext?.getString(R.string.lastNameError)
-            email.error = viewContext?.getString(R.string.emailError)
-            username.error = viewContext?.getString(R.string.usernameError)
-            password.error = viewContext?.getString(R.string.passwordError)
-            phoneNumber.error = viewContext?.getString(R.string.phoneNumberError)
+            if (firstName.text.isEmpty())
+                firstName.error = viewContext?.getString(R.string.firstNameError)
+            if (lastName.text.isEmpty())
+                lastName.error = viewContext?.getString(R.string.lastNameError)
+            if (email.text.isEmpty() || !email.text.checkEmailIsValid())
+                email.error = viewContext?.getString(R.string.emailError)
+            if (username.text.isEmpty())
+                username.error = viewContext?.getString(R.string.usernameError)
+            if (password.text.isEmpty())
+                password.error = viewContext?.getString(R.string.passwordError)
+            if (phoneNumber.text.isEmpty() || !phoneNumberIsValid(phoneNumber.text.toString()))
+                phoneNumber.error = viewContext?.getString(R.string.phoneNumberError)
         } else {
-            username.error = viewContext?.getString(R.string.usernameError)
-            password.error = viewContext?.getString(R.string.passwordError)
+            if (username.text.isEmpty())
+                username.error = viewContext?.getString(R.string.usernameError)
+            if (password.text.isEmpty())
+                password.error = viewContext?.getString(R.string.passwordError)
         }
     }
 }

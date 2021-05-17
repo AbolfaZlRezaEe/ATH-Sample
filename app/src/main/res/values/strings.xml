@@ -23,7 +23,7 @@
     <string name="usernameError">Please Enter Username!</string>
     <string name="passwordError">Please Enter Password</string>
     <string name="phoneNumberError">Please Enter Your PhoneNumber!</string>
-    <string name="emailError">Please Enter Email!</string>
+    <string name="emailError">Please Enter Valid Email!</string>
     <string name="logoutDialogTitle">Logout!</string>
     <string name="logoutDialogMessage">Are you sure you want to logout?</string>
 </resources>

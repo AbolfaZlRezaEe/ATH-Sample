@@ -2,6 +2,7 @@ package com.abproject.athsample.view.auth.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.telephony.PhoneNumberUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import com.abp.noties.base.ATHFragment
 import com.abproject.athsample.R
 import com.abproject.athsample.databinding.FragmentSignUpBinding
 import com.abproject.athsample.util.DateConverter
+import com.abproject.athsample.util.checkEmailIsValid
+import com.abproject.athsample.util.phoneNumberIsValid
 import com.abproject.athsample.view.auth.AuthViewModel
 import com.abproject.athsample.view.splash.SplashActivity
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -39,17 +42,18 @@ class SingUpFragment : ATHFragment() {
         }
     }
 
-    private fun validationEditText(): Boolean {
-        return binding.emailSignUpEditText.text.isNotEmpty()
-                && binding.usernameSignUpEditText.text.isNotEmpty()
+    private fun validationEditTexts(): Boolean {
+        return binding.usernameSignUpEditText.text.isNotEmpty()
+                && binding.emailSignUpEditText.text.checkEmailIsValid()
                 && binding.passwordSignUpEditText.text.isNotEmpty()
                 && binding.firstNameSignUpEditText.text.isNotEmpty()
                 && binding.lastNameSignUpEditText.text.isNotEmpty()
+                && phoneNumberIsValid(binding.phoneNumberSignUpEditText.text.toString())
     }
 
     private fun setupSignUp() {
         binding.signUpButton.setOnClickListener {
-            if (validationEditText()) {
+            if (validationEditTexts()) {
                 authViewModel.saveUserInformation(
                     requireContext(),
                     binding.firstNameSignUpEditText.text.toString(),
@@ -64,30 +68,30 @@ class SingUpFragment : ATHFragment() {
                     if (it) {
                         startActivity(Intent(requireActivity(), SplashActivity::class.java))
                         requireActivity().finish()
-                    }else {
+                    } else {
                         showSnackBar("This Username hsa already been created!")
+                    }
                 }
-            }
-        } else
-        showErrorInAuthEditTexts(
-            binding.firstNameSignUpEditText,
-            binding.lastNameSignUpEditText,
-            binding.emailSignUpEditText,
-            binding.phoneNumberSignUpEditText,
-            binding.usernameSignUpEditText,
-            binding.passwordSignUpEditText
-        )
+            } else
+                showErrorInAuthEditTexts(
+                    binding.firstNameSignUpEditText,
+                    binding.lastNameSignUpEditText,
+                    binding.emailSignUpEditText,
+                    binding.phoneNumberSignUpEditText,
+                    binding.usernameSignUpEditText,
+                    binding.passwordSignUpEditText
+                )
+        }
     }
-}
 
-private val onBackPressCallBack = object : OnBackPressedCallback(true) {
-    override fun handleOnBackPressed() {
-        findNavController().popBackStack()
+    private val onBackPressCallBack = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            findNavController().popBackStack()
+        }
     }
-}
 
-override fun onDestroyView() {
-    super.onDestroyView()
-    _binding = null
-}
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
