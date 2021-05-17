@@ -50,41 +50,44 @@ class SingUpFragment : ATHFragment() {
     private fun setupSignUp() {
         binding.signUpButton.setOnClickListener {
             if (validationEditText()) {
-                if (authViewModel.saveUserInformation(
-                        binding.firstNameSignUpEditText.text.toString(),
-                        binding.lastNameSignUpEditText.text.toString(),
-                        binding.emailSignUpEditText.text.toString(),
-                        binding.usernameSignUpEditText.text.toString(),
-                        binding.phoneNumberSignUpEditText.text.toString(),
-                        binding.passwordSignUpEditText.text.toString(),
-                        DateConverter.convertDateToString(DateConverter.provideDate())
-                    )
-                ) {
-                    startActivity(Intent(requireActivity(), SplashActivity::class.java))
-                    requireActivity().finish()
-                } else {
-                    showSnackBar("This Username hsa already been created!")
-                }
-            } else
-                showErrorInAuthEditTexts(
-                    binding.firstNameSignUpEditText,
-                    binding.lastNameSignUpEditText,
-                    binding.emailSignUpEditText,
-                    binding.phoneNumberSignUpEditText,
-                    binding.usernameSignUpEditText,
-                    binding.passwordSignUpEditText
+                authViewModel.saveUserInformation(
+                    requireContext(),
+                    binding.firstNameSignUpEditText.text.toString(),
+                    binding.lastNameSignUpEditText.text.toString(),
+                    binding.emailSignUpEditText.text.toString(),
+                    binding.usernameSignUpEditText.text.toString(),
+                    binding.phoneNumberSignUpEditText.text.toString(),
+                    binding.passwordSignUpEditText.text.toString(),
+                    DateConverter.convertDateToString(DateConverter.provideDate())
                 )
-        }
+                authViewModel.saveUserInformationStatus.observe(viewLifecycleOwner) {
+                    if (it) {
+                        startActivity(Intent(requireActivity(), SplashActivity::class.java))
+                        requireActivity().finish()
+                    }else {
+                        showSnackBar("This Username hsa already been created!")
+                }
+            }
+        } else
+        showErrorInAuthEditTexts(
+            binding.firstNameSignUpEditText,
+            binding.lastNameSignUpEditText,
+            binding.emailSignUpEditText,
+            binding.phoneNumberSignUpEditText,
+            binding.usernameSignUpEditText,
+            binding.passwordSignUpEditText
+        )
     }
+}
 
-    private val onBackPressCallBack = object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
-            findNavController().popBackStack()
-        }
+private val onBackPressCallBack = object : OnBackPressedCallback(true) {
+    override fun handleOnBackPressed() {
+        findNavController().popBackStack()
     }
+}
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+override fun onDestroyView() {
+    super.onDestroyView()
+    _binding = null
+}
 }

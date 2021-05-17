@@ -16,6 +16,6 @@ interface UserDao {
     suspend fun getUsers(): List<User>
 
     @Query("SELECT * FROM tbl_user WHERE username LIKE '%' || :query || '%'")
-    suspend fun searchInUsersByUsername(query: String): List<User>
+    suspend fun searchInUsersByUsername(query: String): User?
 
 }

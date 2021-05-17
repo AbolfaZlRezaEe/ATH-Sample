@@ -13,6 +13,7 @@ import com.abproject.athsample.databinding.FragmentSignInBinding
 import com.abproject.athsample.view.auth.AuthViewModel
 import com.abproject.athsample.view.splash.SplashActivity
 import org.koin.android.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class SingInFragment : ATHFragment() {
 
@@ -46,14 +47,17 @@ class SingInFragment : ATHFragment() {
     private fun setupSignIn() {
         binding.loginButton.setOnClickListener {
             if (validationEditTexts()) {
-                if (authViewModel.userIsExisting(
-                        binding.usernameSignInEditText.text.toString()
-                    )
-                ) {
-                    startActivity(Intent(requireActivity(), SplashActivity::class.java))
-                    requireActivity().finish()
-                } else {
-                    showSnackBar("Please Enter Validate Username or Password or SignUp!")
+                authViewModel.checkUserInformation(
+                    username = binding.usernameSignInEditText.text.toString(),
+                    password = binding.passwordSignInEditText.text.toString(),
+                    requireContext()
+                )
+                authViewModel.checkUserInformationResult.observe(viewLifecycleOwner) {
+                    if (it) {
+                        startActivity(Intent(requireActivity(), SplashActivity::class.java))
+                        requireActivity().finish()
+                    } else
+                        showSnackBar("Please enter valid Username or Password!")
                 }
             } else
                 showErrorInAuthEditTexts(

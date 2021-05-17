@@ -16,7 +16,7 @@ class MainRepositoryImpl(private val userDao: UserDao) : MainRepository {
         return userDao.getUsers()
     }
 
-    override suspend fun searchInUsersByUsername(query: String): List<User> {
+    override suspend fun searchInUsersByUsername(query: String): User? {
         return userDao.searchInUsersByUsername(query)
     }
 }

@@ -54,7 +54,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
 
     //Koin
-    def koin_version = "2.2.0"
+    def koin_version = "2.2.2"
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-android-scope:$koin_version"
     implementation "org.koin:koin-android-viewmodel:$koin_version"
@@ -73,7 +73,10 @@ dependencies {
     //Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
-
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
+
+    //for Encryption and Decryption
+    implementation 'com.kazakago.cryptore:cryptore:1.4.0'
+
 }
