@@ -9,6 +9,9 @@ import com.abproject.athsample.R
 import com.abproject.athsample.data.dataclass.User
 import com.abproject.athsample.util.DateConverter
 
+/**
+ * Created by Abolfazl on 5/16/21
+ */
 class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
     private var users: MutableList<User> = mutableListOf()
@@ -33,7 +36,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
         fun bindUser(user: User) {
             userFullName.text = "${user.firstName} ${user.lastName}"
             userEmail.text = user.email
-            userDate.text = DateConverter.convertStringToDate(user.createAt)
+            userDate.text = DateConverter.convertStringToDateStringFormat(user.createAt)
         }
     }
 

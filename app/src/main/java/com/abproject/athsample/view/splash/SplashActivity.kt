@@ -8,17 +8,19 @@ import com.abproject.athsample.view.main.MainActivity
 import com.abproject.athsample.R
 import com.abproject.athsample.view.auth.AuthActivity
 import org.koin.android.viewmodel.ext.android.viewModel
-
+/**
+ * Created by Abolfazl on 5/15/21
+ */
 class SplashActivity : AppCompatActivity() {
     private val splashViewModel: SplashViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        handelSplashScreen()
+        handleSplashScreen()
     }
 
-    private fun handelSplashScreen() {
+    private fun handleSplashScreen() {
         Handler().postDelayed({
             if (splashViewModel.checkExistingUser()) {
                 val intent = Intent(this, MainActivity::class.java)

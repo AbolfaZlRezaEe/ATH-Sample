@@ -7,14 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
-import com.abp.noties.base.ATHFragment
+import com.abproject.athsample.base.ATHFragment
 import com.abproject.athsample.R
 import com.abproject.athsample.databinding.FragmentSignInBinding
 import com.abproject.athsample.view.auth.AuthViewModel
 import com.abproject.athsample.view.splash.SplashActivity
+import com.google.android.material.snackbar.Snackbar
 import org.koin.android.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
+/**
+ * Created by Abolfazl on 5/15/21
+ */
 class SingInFragment : ATHFragment() {
 
     private var _binding: FragmentSignInBinding? = null
@@ -36,6 +39,12 @@ class SingInFragment : ATHFragment() {
         requireActivity().onBackPressedDispatcher.addCallback(onBackPressCallBack)
         binding.backButtonSignIn.setOnClickListener {
             findNavController().navigate(R.id.action_singInFragment_to_welcomeFragment)
+        }
+        binding.forgotPasswordButtonSignUp.setOnClickListener {
+            showSnackBar(
+                "This feature required Api, You can create an Api with a back-end developer!",
+                Snackbar.LENGTH_LONG
+            )
         }
     }
 
@@ -67,7 +76,7 @@ class SingInFragment : ATHFragment() {
         }
     }
 
-    val onBackPressCallBack = object : OnBackPressedCallback(true) {
+    private val onBackPressCallBack = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             findNavController().popBackStack()
         }

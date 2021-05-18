@@ -3,6 +3,9 @@ package com.abproject.athsample.data.dataclass
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * Created by Abolfazl on 5/13/21
+ */
 @Entity(tableName = "tbl_user")
 data class User(
     @PrimaryKey(autoGenerate = true)

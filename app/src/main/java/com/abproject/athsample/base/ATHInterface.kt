@@ -1,19 +1,27 @@
 package com.abproject.athsample.base
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.abproject.athsample.R
 import com.abproject.athsample.util.checkEmailIsValid
-import com.abproject.athsample.util.phoneNumberIsValid
+import com.abproject.athsample.util.validationIranianPhoneNumber
 import com.google.android.material.snackbar.Snackbar
 
+/**
+ * Created by Abolfazl on 5/13/21
+ */
 interface ATHInterface {
     val rootView: CoordinatorLayout?
     val viewContext: Context?
+
+    /**
+     * showProgressBar Function use in views (Activity or Fragment)
+     * and that help us for showing progressbar in view.
+     * Note: this function only works on views that have Coordinator Layout!
+     */
     fun showProgressBar(isShow: Boolean) {
         rootView?.let {
             viewContext?.let { context ->
@@ -28,13 +36,24 @@ interface ATHInterface {
         }
     }
 
+    /**
+     * showSnackBar is a custom Function I made for views
+     * this function working in Activities and Fragments.
+     * Note: this Function only works on views that have Coordinator Layout!
+     */
     fun showSnackBar(message: String, duration: Int = Snackbar.LENGTH_SHORT) {
         rootView?.let {
             Snackbar.make(it, message, duration).show()
         }
     }
 
-
+    /**
+     * showErrorInAuthEditText function made for Auth-Section in the App.
+     * this function takes multiple EditText form the input and then
+     * displays predefined Errors on them.
+     * so because this function call multiple time in Auth-Section,
+     * I'm put it in ATHInterface.
+     */
     fun showErrorInAuthEditTexts(
         firstName: EditText? = null,
         lastName: EditText? = null,
@@ -58,7 +77,7 @@ interface ATHInterface {
                 username.error = viewContext?.getString(R.string.usernameError)
             if (password.text.isEmpty())
                 password.error = viewContext?.getString(R.string.passwordError)
-            if (phoneNumber.text.isEmpty() || !phoneNumberIsValid(phoneNumber.text.toString()))
+            if (phoneNumber.text.isEmpty() || !validationIranianPhoneNumber(phoneNumber.text.toString()))
                 phoneNumber.error = viewContext?.getString(R.string.phoneNumberError)
         } else {
             if (username.text.isEmpty())

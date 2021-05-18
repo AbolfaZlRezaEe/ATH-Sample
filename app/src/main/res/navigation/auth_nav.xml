@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/auth_nav"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/auth_nav"
     app:startDestination="@id/welcomeFragment">
 
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.abproject.athsample.view.auth.fragment.WelcomeFragment"
-        android:label="WelcomeFragment" >
+        android:label="WelcomeFragment">
         <action
             android:id="@+id/action_welcomeFragment_to_singInFragment"
-            app:destination="@id/singInFragment" />
+            app:destination="@id/singInFragment"/>
         <action
             android:id="@+id/action_welcomeFragment_to_singUpFragment"
-            app:destination="@id/singUpFragment" />
+            app:destination="@id/singUpFragment"/>
     </fragment>
     <fragment
         android:id="@+id/singInFragment"
         android:name="com.abproject.athsample.view.auth.fragment.SingInFragment"
-        android:label="SingInFragment" >
+        android:label="SingInFragment">
         <action
             android:id="@+id/action_singInFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment" />
+            app:destination="@id/welcomeFragment"/>
     </fragment>
     <fragment
         android:id="@+id/singUpFragment"
         android:name="com.abproject.athsample.view.auth.fragment.SingUpFragment"
-        android:label="SingUpFragment" >
+        android:label="SingUpFragment">
         <action
             android:id="@+id/action_singUpFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />

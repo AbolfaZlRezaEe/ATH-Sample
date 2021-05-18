@@ -1,4 +1,4 @@
-package com.abp.noties.base
+package com.abproject.athsample.base
 
 import android.content.Context
 import android.view.ViewGroup
@@ -8,6 +8,9 @@ import androidx.core.view.forEach
 import com.abproject.athsample.base.ATHInterface
 import java.lang.IllegalStateException
 
+/**
+ * Created by Abolfazl on 5/13/21
+ */
 abstract class ATHActivity : AppCompatActivity(), ATHInterface {
     override val rootView: CoordinatorLayout?
         get() {

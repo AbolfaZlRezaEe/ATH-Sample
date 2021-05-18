@@ -26,4 +26,5 @@
     <string name="emailError">Please Enter Valid Email!</string>
     <string name="logoutDialogTitle">Logout!</string>
     <string name="logoutDialogMessage">Are you sure you want to logout?</string>
+    <string name="forgotPassword">Forgot Password?</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.abproject.athsample.view.main
 
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +13,9 @@ import com.abproject.athsample.databinding.ActivityMainBinding
 import com.abproject.athsample.view.auth.AuthActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
+/**
+ * Created by Abolfazl on 5/16/21
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -27,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setupFullName()
 
         mainViewModel.users.observe(this) { response ->
-            setupRecyclerView(response, true)
+            setupRecyclerView(response)
         }
 
         binding.logOutButtonMain.setOnClickListener {
@@ -35,37 +37,32 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupRecyclerView(users: List<User>, implement: Boolean = false) {
+    private fun setupRecyclerView(users: List<User>) {
         mainAdapter = MainAdapter()
-        if (implement) {
-            binding.recyclerViewMain.layoutManager =
-                LinearLayoutManager(
-                    this,
-                    RecyclerView.VERTICAL,
-                    false
-                )
-            mainAdapter.userDataChange(users)
-            binding.recyclerViewMain.adapter = mainAdapter
-        } else
-            mainAdapter.userDataChange(users)
+        binding.recyclerViewMain.layoutManager =
+            LinearLayoutManager(
+                this,
+                RecyclerView.VERTICAL,
+                false
+            )
+        mainAdapter.userDataChange(users)
+        binding.recyclerViewMain.adapter = mainAdapter
     }
 
     private fun setupLogoutSection() {
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.logoutDialogTitle))
             .setMessage(getString(R.string.logoutDialogMessage))
-            .setPositiveButton(getString(R.string.yes)) { dialog, which ->
+            .setPositiveButton(getString(R.string.yes)) { dialog, _ ->
                 startActivity(Intent(this, AuthActivity::class.java))
                 dialog.dismiss()
                 UserInformation.clearInformation()
                 mainViewModel.clearDataFromStorage()
                 finish()
             }
-            .setNegativeButton(
-                getString(R.string.no),
-                DialogInterface.OnClickListener { dialog, which ->
-                    dialog.dismiss()
-                })
+            .setNegativeButton(getString(R.string.no)) { dialog, _ ->
+                dialog.dismiss()
+            }
             .show()
     }
 

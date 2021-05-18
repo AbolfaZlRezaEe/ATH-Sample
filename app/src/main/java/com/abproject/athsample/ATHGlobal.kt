@@ -18,6 +18,9 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import timber.log.Timber
 
+/**
+ * Created by Abolfazl on 5/13/21
+ */
 class ATHGlobal : Application() {
 
     override fun onCreate() {
@@ -51,18 +54,23 @@ class ATHGlobal : Application() {
     }
 
     private val repositoriesModule = module {
-        factory<MainRepository> { MainRepositoryImpl(get()) }
+        factory<MainRepository> {
+            MainRepositoryImpl(
+                applicationContext,
+                get(), get()
+            )
+        }
     }
 
     private val viewModelModule = module {
-        viewModel { MainViewModel(get(),get()) }
-        viewModel { AuthViewModel(get(), get()) }
+        viewModel { MainViewModel(get()) }
+        viewModel { AuthViewModel(get()) }
         viewModel { SplashViewModel(get()) }
     }
 
     private fun loadUserInformation() {
-        val authViewModel: AuthViewModel = get()
-        authViewModel.loadUserExisting()
-        authViewModel.loadUserInformation()
+        val mainRepository: MainRepository = get()
+        mainRepository.loadUserExisting()
+        mainRepository.loadUserInformation()
     }
 }

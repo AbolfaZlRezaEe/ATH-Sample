@@ -1,14 +1,16 @@
 package com.abproject.athsample.view.splash
 
-import android.content.SharedPreferences
-import com.abp.noties.base.ATHViewModel
-import com.abproject.athsample.util.Variables.IS_EXISTING_KEY
+import com.abproject.athsample.base.ATHViewModel
+import com.abproject.athsample.data.repository.MainRepository
 
+/**
+ * Created by Abolfazl on 5/15/21
+ */
 class SplashViewModel(
-    private val sharedPreferences: SharedPreferences
+    private val mainRepository: MainRepository
 ) : ATHViewModel() {
 
     fun checkExistingUser(): Boolean {
-        return sharedPreferences.getBoolean(IS_EXISTING_KEY, false)
+        return mainRepository.checkExistingUserInSharedPrefs()
     }
 }

@@ -47,6 +47,13 @@
         <item name="android:fontFamily">@font/gilroy_semibold</item>
     </style>
 
+    <style name="Widget.MaterialComponent.TextButton.Noties" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">?colorSecondary</item>
+        <item name="fontFamily">@font/gilroy_semibold</item>
+        <item name="android:fontFamily">@font/gilroy_semibold</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
     <style name="Widget.AppCompat.EditText.Noties" parent="android:Widget.EditText">
         <item name="fontFamily">@font/gilroy_medium</item>
         <item name="android:fontFamily">@font/gilroy_medium</item>

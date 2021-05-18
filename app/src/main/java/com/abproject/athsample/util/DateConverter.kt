@@ -4,9 +4,12 @@ import android.text.format.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Created by Abolfazl on 5/13/21
+ */
 object DateConverter {
 
-    fun convertStringToDate(calendar: String): String {
+    fun convertStringToDateStringFormat(calendar: String): String {
         val cal = Calendar.getInstance()
         val sdf = SimpleDateFormat("yyyy-mm-dd hh:mm:ss", Locale.ENGLISH)
         cal.time = sdf.parse(calendar)

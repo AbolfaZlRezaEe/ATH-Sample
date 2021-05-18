@@ -4,7 +4,11 @@ import android.content.Context
 import android.util.Base64
 import com.kazakago.cryptore.CipherAlgorithm
 import com.kazakago.cryptore.Cryptore
+import timber.log.Timber
 
+/**
+ * Created by Abolfazl on 5/17/21
+ */
 class EncryptionTools(
     context: Context
 ) {
@@ -27,7 +31,7 @@ class EncryptionTools(
             return Base64.encodeToString(result.bytes, Base64.DEFAULT)
         } catch (e: Exception) {
             e.printStackTrace()
-//            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()
+            Timber.e(e.toString())
         }
         return ""
     }
@@ -39,7 +43,7 @@ class EncryptionTools(
             return String(result.bytes)
         } catch (e: Exception) {
             e.printStackTrace()
-//            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()
+            Timber.e(e.toString())
         }
         return ""
     }

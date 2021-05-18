@@ -1,7 +1,8 @@
 package com.abproject.athsample.data.dataclass
 
-import timber.log.Timber
-
+/**
+ * Created by Abolfazl on 5/15/21
+ */
 object UserInformation {
     var isExisting: Boolean = false
         private set
@@ -38,4 +39,5 @@ object UserInformation {
         email = null
         username = null
     }
+
 }
