@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
-import com.abproject.athsample.base.ATHFragment
 import com.abproject.athsample.R
+import com.abproject.athsample.base.ATHFragment
+import com.abproject.athsample.data.mail.Mail
+import com.abproject.athsample.data.mail.SendEmailApi
 import com.abproject.athsample.databinding.FragmentSignInBinding
 import com.abproject.athsample.view.auth.AuthViewModel
 import com.abproject.athsample.view.splash.SplashActivity
-import com.google.android.material.snackbar.Snackbar
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -28,7 +29,7 @@ class SingInFragment : ATHFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSignInBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -41,10 +42,7 @@ class SingInFragment : ATHFragment() {
             findNavController().navigate(R.id.action_singInFragment_to_welcomeFragment)
         }
         binding.forgotPasswordButtonSignUp.setOnClickListener {
-            showSnackBar(
-                "This feature required Api, You can create an Api with a back-end developer!",
-                Snackbar.LENGTH_LONG
-            )
+            findNavController().navigate(R.id.action_singInFragment_to_forgotPasswordFragment)
         }
     }
 

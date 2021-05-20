@@ -9,8 +9,11 @@ import com.abproject.athsample.data.dataclass.User
 @Dao
 interface UserDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsertUser(user: User)
+    @Insert
+    suspend fun insertUser(user: User)
+
+    @Update
+    suspend fun updateUser(user: User)
 
     @Query("SELECT * FROM tbl_user")
     suspend fun getUsers(): List<User>
@@ -20,7 +23,15 @@ interface UserDao {
      * if username has already exists @return User and if this
      * username didn't exist so @return null
      */
-    @Query("SELECT * FROM tbl_user WHERE username LIKE '%' || :query || '%'")
-    suspend fun searchInUsersByUsername(query: String): User?
+    @Query("SELECT * FROM tbl_user WHERE username == :usernameString")
+    suspend fun searchInUsersByUsername(usernameString: String): User?
+
+    /**
+     * this function takes a email for searching in database.
+     * if email has already exists @return User and if this
+     * email didn't exist so @return null
+     */
+    @Query("SELECT * FROM tbl_user WHERE email == :email")
+    suspend fun searchInUsersByEmail(email: String): User?
 
 }

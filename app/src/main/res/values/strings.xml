@@ -8,8 +8,12 @@
     <string name="loading">Loading</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="done">Done</string>
     <string name="signUp">Sign Up</string>
     <string name="signIn">Sign In</string>
+    <string name="EnterCodeHere">Enter Code here..</string>
+    <string name="newPassword">New Password</string>
     <string name="singUpWelcome">Sign up</string>
     <string name="singInWelcome">Sign in</string>
     <string name="login">Login</string>
@@ -25,6 +29,14 @@
     <string name="phoneNumberError">Please Enter Your PhoneNumber!</string>
     <string name="emailError">Please Enter Valid Email!</string>
     <string name="logoutDialogTitle">Logout!</string>
+    <string name="sendCode">Send Code</string>
+    <string name="codeError">Please Enter Your Code Here!</string>
+    <string name="wrongCode">Make sure you enter the right code!</string>
+    <string name="wrongEmail">Please Enter Valid Email!</string>
+    <string name="wrongPhoneNumber">Please Enter Valid Phone Number!</string>
+    <string name="resetPassword">Reset Password</string>
+    <string name="resetPasswordIsSuccess">Reset password is successful!</string>
     <string name="logoutDialogMessage">Are you sure you want to logout?</string>
+    <string name="ok">OK</string>
     <string name="forgotPassword">Forgot Password?</string>
 </resources>

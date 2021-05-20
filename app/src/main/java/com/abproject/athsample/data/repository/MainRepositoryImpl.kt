@@ -17,18 +17,26 @@ class MainRepositoryImpl(
     private val sharedPreferences: SharedPreferences
 ) : MainRepository {
 
-    override suspend fun upsertUser(user: User): Boolean {
+    override suspend fun insertUser(user: User): Boolean {
         val checkUsernameIsExist = userDao.searchInUsersByUsername(user.username)
         if (checkUsernameIsExist != null)
             return false
 
         val encryptedPassword = EncryptionTools(context).encryptRSA(user.password)
         user.password = encryptedPassword
-        userDao.upsertUser(user)
+        userDao.insertUser(user)
         saveUserInformationInSharedPrefs(user)
         loadUserInformation(user)
         return true
     }
+
+    override suspend fun updateUser(user: User) {
+        user.password = EncryptionTools(context).encryptRSA(user.password)
+        userDao.updateUser(user)
+        saveUserInformationInSharedPrefs(user)
+        loadUserInformation(user)
+    }
+
 
     override suspend fun getUsers(): List<User> {
         return userDao.getUsers()
@@ -36,6 +44,10 @@ class MainRepositoryImpl(
 
     override suspend fun searchInUsersByUsername(query: String): User? {
         return userDao.searchInUsersByUsername(query)
+    }
+
+    override suspend fun searchInUsersByEmail(email: String): User? {
+        return userDao.searchInUsersByEmail(email)
     }
 
     override fun loadUserExisting() {

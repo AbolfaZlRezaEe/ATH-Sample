@@ -36,6 +36,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    packagingOptions {
+        pickFirst 'META-INF/LICENSE.txt' // picks the JavaMail license file
+    }
 }
 
 dependencies {
@@ -52,6 +55,7 @@ dependencies {
     //Navigation Component
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+
 
     //Koin
     def koin_version = "2.2.2"
@@ -76,8 +80,11 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
 
-    //for Encryption and Decryption
+    //Encryption and Decryption
     implementation 'com.kazakago.cryptore:cryptore:1.4.0'
 
+    //JavaMail
+    implementation 'com.sun.mail:android-mail:1.5.5'
+    implementation 'com.sun.mail:android-activation:1.5.5'
 
 }
