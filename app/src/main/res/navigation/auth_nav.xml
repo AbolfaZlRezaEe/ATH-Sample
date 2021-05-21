@@ -10,25 +10,25 @@
         android:label="WelcomeFragment">
         <action
             android:id="@+id/action_welcomeFragment_to_singInFragment"
-            app:destination="@id/singInFragment"/>
+            app:destination="@id/singInFragment" />
         <action
             android:id="@+id/action_welcomeFragment_to_singUpFragment"
-            app:destination="@id/singUpFragment"/>
+            app:destination="@id/singUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/singInFragment"
-        android:name="com.abproject.athsample.view.auth.fragment.SingInFragment"
+        android:name="com.abproject.athsample.view.auth.fragment.SignInFragment"
         android:label="SingInFragment">
         <action
             android:id="@+id/action_singInFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment"/>
+            app:destination="@id/welcomeFragment" />
         <action
             android:id="@+id/action_singInFragment_to_forgotPasswordFragment"
             app:destination="@id/forgotPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/singUpFragment"
-        android:name="com.abproject.athsample.view.auth.fragment.SingUpFragment"
+        android:name="com.abproject.athsample.view.auth.fragment.SignUpFragment"
         android:label="SingUpFragment">
         <action
             android:id="@+id/action_singUpFragment_to_welcomeFragment"
@@ -37,7 +37,7 @@
     <fragment
         android:id="@+id/forgotPasswordFragment"
         android:name="com.abproject.athsample.view.auth.fragment.ForgotPasswordFragment"
-        android:label="ForgotPasswordFragment" >
+        android:label="ForgotPasswordFragment">
         <action
             android:id="@+id/action_forgotPasswordFragment_to_singInFragment"
             app:destination="@id/singInFragment" />
@@ -48,5 +48,10 @@
     <fragment
         android:id="@+id/resetPasswordFragment"
         android:name="com.abproject.athsample.view.auth.fragment.ResetPasswordFragment"
-        android:label="ResetPasswordFragment" />
+        android:label="ResetPasswordFragment">
+        <action
+            android:id="@+id/action_resetPasswordFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment"
+            app:popUpTo="@id/welcomeFragment" />
+    </fragment>
 </navigation>

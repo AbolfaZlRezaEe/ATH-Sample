@@ -20,7 +20,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 /**
  * Created by Abolfazl on 5/15/21
  */
-class SingUpFragment : ATHFragment() {
+class SignUpFragment : ATHFragment() {
 
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!

@@ -42,9 +42,6 @@ class ResetPasswordFragment : ATHFragment() {
         requireActivity().onBackPressedDispatcher.addCallback(onBackPressCallBack)
         showSnackBar("Email sent. Please check your Email...", Snackbar.LENGTH_LONG)
         setupForgotPasswordButton()
-        binding.backButtonSignIn.setOnClickListener {
-            findNavController().navigate(R.id.action_forgotPasswordFragment_to_singInFragment)
-        }
     }
 
     private fun setupForgotPasswordButton() {
@@ -111,7 +108,7 @@ class ResetPasswordFragment : ATHFragment() {
 
     private val onBackPressCallBack = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_resetPasswordFragment_to_welcomeFragment)
         }
     }
 }
