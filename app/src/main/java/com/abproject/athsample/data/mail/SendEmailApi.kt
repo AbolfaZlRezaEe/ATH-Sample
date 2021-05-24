@@ -20,7 +20,6 @@ class SendEmailApi {
     val emailStatus: LiveData<Resource<String>> get() = _emailStatus
 
     private val job = Job()
-
     /**
      * for sending Email Please Check Out Tips Section in the Readme file or check this answer
      * https://stackoverflow.com/a/33801654/15683720

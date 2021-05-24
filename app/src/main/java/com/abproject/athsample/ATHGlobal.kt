@@ -63,9 +63,9 @@ class ATHGlobal : Application() {
     }
 
     private val viewModelModule = module {
-        viewModel { MainViewModel(get()) }
-        viewModel { AuthViewModel(get()) }
-        viewModel { SplashViewModel(get()) }
+        viewModel { MainViewModel(this@ATHGlobal, get()) }
+        viewModel { AuthViewModel(this@ATHGlobal, get()) }
+        viewModel { SplashViewModel(this@ATHGlobal, get()) }
     }
 
     private fun loadUserInformation() {

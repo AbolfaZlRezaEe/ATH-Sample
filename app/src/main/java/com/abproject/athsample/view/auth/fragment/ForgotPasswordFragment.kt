@@ -50,7 +50,7 @@ class ForgotPasswordFragment : ATHFragment() {
             if (validationEmailEditText()) {
                 authViewModel.sendEmailToUser(
                     binding.emailForgotPasswordEditText.text.toString()
-                ).observe(viewLifecycleOwner) { response ->
+                )?.observe(viewLifecycleOwner) { response ->
                     when (response) {
                         is Resource.Loading -> {
                             showProgressBar(true)
@@ -73,7 +73,7 @@ class ForgotPasswordFragment : ATHFragment() {
                             }
                         }
                     }
-                }
+                } ?: showSnackBar("No Internet connection. please try again!")
             } else
                 setErrorForEditText()
         }
@@ -83,7 +83,7 @@ class ForgotPasswordFragment : ATHFragment() {
         if (binding.emailForgotPasswordEditText.text.isEmpty())
             binding.emailForgotPasswordEditText.error = getString(R.string.emailError)
         if (!binding.emailForgotPasswordEditText.text.checkEmailIsValid())
-            binding.emailForgotPasswordEditText.error=getString(R.string.wrongEmail)
+            binding.emailForgotPasswordEditText.error = getString(R.string.wrongEmail)
     }
 
     private fun setupNavigationToResetPassword(email: String, code: String) {

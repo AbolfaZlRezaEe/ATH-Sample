@@ -1,9 +1,14 @@
 package com.abproject.athsample.view.auth
 
+import android.app.Application
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.abproject.athsample.ATHGlobal
 import com.abproject.athsample.base.ATHViewModel
 import com.abproject.athsample.data.dataclass.User
 import com.abproject.athsample.data.mail.Mail
@@ -11,14 +16,16 @@ import com.abproject.athsample.data.mail.SendEmailApi
 import com.abproject.athsample.data.repository.MainRepository
 import com.abproject.athsample.util.EncryptionTools
 import com.abproject.athsample.util.Resource
+import com.abproject.athsample.util.checkInternetConnection
 import kotlinx.coroutines.*
 
 /**
  * Created by Abolfazl on 5/15/21
  */
 class AuthViewModel(
+    private val app: Application,
     private val mainRepository: MainRepository
-) : ATHViewModel() {
+) : ATHViewModel(app) {
 
     private val _checkUserInformationResult = MutableLiveData<Boolean>()
     private val _saveUserInformationStatus = MutableLiveData<Boolean>()
@@ -81,20 +88,24 @@ class AuthViewModel(
         }
     }
 
-    fun sendEmailToUser(userEmail: String): LiveData<Resource<String>> {
-        val sendEmailApi = SendEmailApi()
-        viewModelScope.launch {
-            val result = mainRepository.searchInUsersByEmail(userEmail)
-            if (result != null) {
-                sendEmailApi.sendEmail(userEmail)
-            } else
-                sendEmailApi._emailStatus.postValue(
-                    Resource.Error(
-                        null,
-                        "Please enter a valid email!"
+    fun sendEmailToUser(userEmail: String): LiveData<Resource<String>>? {
+        if (checkInternetConnection()) {
+            val sendEmailApi = SendEmailApi()
+            viewModelScope.launch {
+                val result = mainRepository.searchInUsersByEmail(userEmail)
+                if (result != null) {
+                    sendEmailApi.sendEmail(userEmail)
+                } else
+                    sendEmailApi._emailStatus.postValue(
+                        Resource.Error(
+                            null,
+                            "Please enter a valid email!"
+                        )
                     )
-                )
-        }
-        return sendEmailApi.emailStatus
+            }
+            return sendEmailApi.emailStatus
+        } else
+            return null
     }
+
 }

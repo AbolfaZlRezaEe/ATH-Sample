@@ -1,5 +1,6 @@
 package com.abproject.athsample.view.main
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -14,8 +15,9 @@ import kotlinx.coroutines.withContext
  * Created by Abolfazl on 5/16/21
  */
 class MainViewModel(
+    private val app: Application,
     private val mainRepository: MainRepository
-) : ATHViewModel() {
+) : ATHViewModel(app) {
 
     private val _users = MutableLiveData<List<User>>()
     val users: LiveData<List<User>> = _users
