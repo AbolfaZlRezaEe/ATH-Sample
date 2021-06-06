@@ -14,6 +14,7 @@ This Project use:
 - JavaMail Api
 - Kotlin Coroutines
 - Shared Prefrences
+- [Crypto](https://github.com/KazaKago/Cryptore) Library.
 
 Also when the user Signup into the app, the password is Encrypted and saved into Database. When the user logs out and then logs in again, the password is read from the database and then decrypted for verification. It's better for **Security**.
 
