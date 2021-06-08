@@ -39,6 +39,8 @@ For Forgot Password section in this app, There are several things you need to ke
 
 4. Allow each app to send email. Go to https://accounts.google.com/b/0/DisplayUnlockCaptcha and click on Continue.
 
+5. For the last step, Enter your **Email** and **Password** in the **SendEmailApi** class in the project.
+
 ## Contribution
 
 If you have any ideas or issues, don't hesitate to make contact via the Issues page. Every contribution is welcome. I see every issues and pull requests you made.
