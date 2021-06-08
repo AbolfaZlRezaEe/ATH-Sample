@@ -7,6 +7,7 @@ import android.os.Build
 import android.util.Patterns
 import com.abproject.athsample.ATHGlobal
 import com.abproject.athsample.base.ATHViewModel
+import com.abproject.athsample.util.checkinternetconnection.ConnectionLiveData
 
 /**
  * Created by Abolfazl on 5/17/21
@@ -24,6 +25,9 @@ fun validationIranianPhoneNumber(number: String): Boolean {
  * checkInternetConnection is a function that checks the device Connection
  * Mobile data or Wifi or Both and then @return false if no Connection in the Device.
  */
+@Deprecated(
+    "this Method has no optimize for all device. also this method doesn't show Internet available" +
+            "on your device.")
 fun ATHViewModel.checkInternetConnection(): Boolean {
     val connectivityManager = getApplication<ATHGlobal>().getSystemService(
         Context.CONNECTIVITY_SERVICE

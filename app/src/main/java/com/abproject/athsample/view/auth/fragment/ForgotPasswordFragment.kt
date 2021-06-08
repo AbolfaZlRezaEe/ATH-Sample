@@ -1,6 +1,7 @@
 package com.abproject.athsample.view.auth.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +15,11 @@ import com.abproject.athsample.util.Resource
 import com.abproject.athsample.util.Variables.EXTRA_KEY_CODE
 import com.abproject.athsample.util.Variables.EXTRA_KEY_EMAIL
 import com.abproject.athsample.util.checkEmailIsValid
+import com.abproject.athsample.util.checkinternetconnection.ConnectionLiveData
 import com.abproject.athsample.view.auth.AuthViewModel
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 /**
  * Created by Abolfazl on 5/20/21
@@ -26,6 +29,8 @@ class ForgotPasswordFragment : ATHFragment() {
     private var _binding: FragmentForgotPasswordInBinding? = null
     private val binding get() = _binding!!
     private val authViewModel: AuthViewModel by viewModel()
+    private lateinit var connectionLiveData: ConnectionLiveData
+    private var internetConnectionStatus: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +45,13 @@ class ForgotPasswordFragment : ATHFragment() {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().onBackPressedDispatcher.addCallback(onBackPressCallBack)
         setupForgotPasswordButton()
+
+        // initialize connection live data for check internet connection status.
+        connectionLiveData = ConnectionLiveData(requireContext())
+        connectionLiveData.observe(viewLifecycleOwner) {
+            internetConnectionStatus = it
+        }
+
         binding.backButtonSignIn.setOnClickListener {
             findNavController().navigate(R.id.action_forgotPasswordFragment_to_singInFragment)
         }
@@ -48,35 +60,40 @@ class ForgotPasswordFragment : ATHFragment() {
     private fun setupForgotPasswordButton() {
         binding.sendCodeButton.setOnClickListener {
             if (validationEmailEditText()) {
-                authViewModel.sendEmailToUser(
-                    binding.emailForgotPasswordEditText.text.toString()
-                )?.observe(viewLifecycleOwner) { response ->
-                    when (response) {
-                        is Resource.Loading -> {
-                            showProgressBar(true)
-                        }
-                        is Resource.Success -> {
-                            showProgressBar(false)
-                            response.data?.let { code ->
-                                if (code.isNotEmpty()) {
-                                    setupNavigationToResetPassword(
-                                        binding.emailForgotPasswordEditText.text.toString(),
-                                        code
-                                    )
-                                }
-                            }
-                        }
-                        is Resource.Error -> {
-                            showProgressBar(false)
-                            response.message?.let { message ->
-                                showSnackBar(message, Snackbar.LENGTH_LONG)
-                            }
-                        }
-                    }
-                } ?: showSnackBar("No Internet connection. please try again!")
+                initializeSendEmailToUser(binding.emailForgotPasswordEditText.text.toString())
             } else
                 setErrorForEditText()
         }
+    }
+
+    private fun initializeSendEmailToUser(email: String) {
+        if (internetConnectionStatus) {
+            authViewModel.sendEmailToUser(email).observe(viewLifecycleOwner, { response ->
+                when (response) {
+                    is Resource.Loading -> {
+                        showProgressBar(true)
+                    }
+                    is Resource.Success -> {
+                        showProgressBar(false)
+                        response.data?.let { code ->
+                            if (code.isNotEmpty()) {
+                                setupNavigationToResetPassword(
+                                    binding.emailForgotPasswordEditText.text.toString(),
+                                    code
+                                )
+                            }
+                        }
+                    }
+                    is Resource.Error -> {
+                        showProgressBar(false)
+                        response.message?.let { message ->
+                            showSnackBar(message, Snackbar.LENGTH_LONG)
+                        }
+                    }
+                }
+            })
+        } else
+            showSnackBar("Please check your connection and try again!")
     }
 
     private fun setErrorForEditText() {

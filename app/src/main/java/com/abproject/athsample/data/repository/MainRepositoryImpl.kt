@@ -33,6 +33,8 @@ class MainRepositoryImpl(
     override suspend fun updateUser(user: User) {
         user.password = EncryptionTools(context).encryptRSA(user.password)
         userDao.updateUser(user)
+        clearDataFromSharedPrefs()
+        clearDataFromUserInformationDataClass()
         saveUserInformationInSharedPrefs(user)
         loadUserInformation(user)
     }
@@ -101,6 +103,10 @@ class MainRepositoryImpl(
         sharedPreferences.edit()
             .clear()
             .apply()
+    }
+
+    override fun clearDataFromUserInformationDataClass() {
+        UserInformation.clearInformation()
     }
 
     override fun checkExistingUserInSharedPrefs(): Boolean {

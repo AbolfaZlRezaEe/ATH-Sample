@@ -16,5 +16,6 @@ interface MainRepository {
     fun loadUserInformation(user: User? = null)
     fun saveUserInformationInSharedPrefs(user: User)
     fun clearDataFromSharedPrefs()
+    fun clearDataFromUserInformationDataClass()
     fun checkExistingUserInSharedPrefs(): Boolean
 }
